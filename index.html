@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://www.jonathanbeard.io/tutorials/GitHubPages -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hosting pages with GitHub, and More</title>
+    <meta name="viewport" content="width=device-width">
+    <meta property="og:site_name">
+    <meta property="og:title" content="Hosting pages with GitHub, and More">
+    <meta property="og:description">
+    <meta property="og:image" content="http://jonathanbeard.io/img/30930.jpg">
+    <meta name="description" content="How to host pages with GitHub pages, use jekyll and bootstrap together to make awesome pages">
+    <meta name="keywords" content="hosting, github, jekyll, bootstrap">
+    <link rel="canonical" href="./index_files/index.html">
+
+    <!-- Custom CSS & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="./index_files/style.css">
+
+    <!-- Custom Fonts -->
+    <!--<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light|Source+Code+Pro:400,900|Inconsolata:700|Cinzel:400,700,900|Special+Elite|Press+Start+2P' rel='stylesheet' type='text/css'>-->
+    <link rel="stylesheet" href="./index_files/font-awesome.min.css">
+   <link href="./index_files/css" rel="stylesheet" type="text/css">
+   <link href="http://www.jonathanbeard.io/feed.xml" rel="alternate" type="application/atom+xml">
+   <script async="" src="./index_files/analytics.js"></script><script async="">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64918761-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+    <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+     <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top top-nav-collapse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden active">
+                        <a href="http://www.jonathanbeard.io/tutorials/GitHubPages#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="http://www.jonathanbeard.io/index.html">Home</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="http://www.jonathanbeard.io/#about">About</a>
+                    </li>
+                    
+                    <li>
+<a class="page-scroll" href="http://www.jonathanbeard.io/publications">Publications</a>
+</li>
+<li>
+<a class="page-scroll" href="http://www.jonathanbeard.io/tutorials">Tutorials</a>
+</li>
+<li>
+<a class="page-scroll" href="http://www.jonathanbeard.io/software">Software</a>
+</li>
+<li>
+<a class="page-scroll" href="http://www.jonathanbeard.io/blog">Blog</a>
+</li>
+<!-- 
+FIXME: finish these pages
+<li>
+<a class="page-scroll" href="/research">Research</a>
+</li>
+-->
+
+                    
+                    <li>
+                        <a class="page-scroll" href="http://www.jonathanbeard.io/#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    
+<!--    <div class="clear"> -->
+      <div class="container content-section">
+      <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+<!--      <div class="block">
+         <div class="clear"> -->
+            <p>So you want to start a website, and you want to use GitHub pages. The
+first thing you'll need to do is make a new repository on GitHub
+for your website. So once you're logged in, and on your main page,
+click on the green button that says "+ New repository" as shown below:
+<img class="center-image responsive-image" src="./index_files/newrepo.png" height="124,width=327/"></p>
+
+<p>Once you have a new repository set up, you'll need to make a branch in
+addition to the default "main" that is created when you make the 
+repository. It'll have to be called "gh-pages." At this point it's 
+worth mentioning that if you don't want to build a page, you can use
+GitHub's page generator feature accessible through settings. If you
+want to make your own page, then continue. </p>
+
+<p>So now we need to check out our newly created repositories, first the
+main branch where we'll keep the website project files (if we need such
+a thing, useful for scratch).</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone [repo name goes here]
+</code></pre></figure>
+<p>Now we need ot make our gh-pages branch, assuming you didn't 
+make your page using the page generator. I prefer keeping
+a totally separate copy since I use Markdown and several other
+homegrown tools to generate my webpage from source.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone [repo name goes here]_site
+git checkout -b gh-pages
+git push origin gh-pages
+</code></pre></figure>
+<p>Now you have a new branch in the xxx_site folder. You can put 
+an index.html there if you like to, feel free to download
+this one directly to the gh-pages repo.</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">wget www.jonathanbeard.io/files/index.html
+</code></pre></figure>
+<p>If everything is set up correctly, you can now commit
+this branch again:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git add *
+git commit -a -m "initial commit"
+git push -u origin gh-pages
+</code></pre></figure>
+<p>In a few moments you should be able to go to your
+website as your user name, as in:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">[username].github.io
+</code></pre></figure>
+<p>And if you've added the simple "Hello World" then you should
+end up within something that looks like this:</p>
+
+<p><img class="center-image responsive-image" src="./index_files/hello_world.png" width="1231,height=316/"></p>
+
+<p>Now you've purchased a web domain name, then you'll probably want to 
+get it to point to your git-hub page, to do this, we'll need to add
+set up a few more things. First things first, lets add a <a class="high" src="https://en.wikipedia.org/wiki/CNAME_record">CNAME</a> file to the 
+gh-pages branch of your repo. What needs to go in this is the name of 
+the domain that you've purchased with the proper sub-domain to point to 
+this page (don't worry if you don't know the difference between apex/base/root
+domain and sub-domain, just know that <i>www</i> is technically 
+a sub-domain). </p>
+
+<p>For instance, here's the CNAME file for my domain:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">http://www.jonathanbeard.io
+</code></pre></figure>
+<p>Make a file in gh-pages like this:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">cd [your repo root, i.e., gh-pages branch]
+echo [your domain name] &gt;&gt; CNAME
+</code></pre></figure>
+<p>Feel free to commit the repo to the gh-pages branch now. Next we'll
+need to set up the DNS zone to know where to go to find your page
+with your DNS provider (in almost every
+instance this will be the company you purchased your domain name from).
+The two I'm most familiar with are Gandi and GoDaddy so, I'm going to 
+stick to these two. This shouldn't take but a few moments using the
+GUI on the vendors website (GoDaddy and Gandi are both quite
+simple). Using Gandi you're looking for something that looks like this:</p>
+
+<p><img class="center-image responsive-image" src="./index_files/gandizone.png" height="127,width=303/"></p>
+
+<p>With GoDaddy you'll get something like this:</p>
+
+<p><img class="center-image responsive-image" src="./index_files/godaddyzone.png" height="223,width=318/"></p>
+
+<p>Once you're in you'll need to edit the files to be something like:</p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">www 3600 IN CNAME [github user name].github.io.
+</code></pre></figure>
+<p>There are quite a few options when setting the DNS zone, if you're not
+an advanced user (I'm assuming your not if you're reading this), lets
+stick with the single subdomain <i>www</i>. If you want to know more
+about what each line means within the zone file and what else you can 
+do then I suggest you look at the </p>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">$&gt;dig www.jonathanbeard.io +nostats +nocomments +nocmd
+
+; &lt;&lt;&gt;&gt; DiG 9.8.3-P1 &lt;&lt;&gt;&gt; www.jonathanbeard.io +nostats +nocomments +nocmd
+;; global options: +cmd
+;www.jonathanbeard.io.      IN  A
+www.jonathanbeard.io.   3600    IN  CNAME   jonathan-beard.github.io.
+jonathan-beard.github.io. 3600  IN  CNAME   github.map.fastly.net.
+github.map.fastly.net.  24  IN  A   23.235.40.133
+</code></pre></figure>
+    
+    
+<!--            </div>
+      </div> -->
+    </div>
+    </div>
+    </div>
+            
+                <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright © Jonathan Beard 2016</p>
+        </div>
+    </footer>
+
+             <!-- jQuery Version 1.11.0 
+    <script src="/js/jquery.js"></script> -->
+   <!-- latest version -->
+<script src="./index_files/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript 
+    <script src="/js/bootstrap.min.js"></script> -->
+   <script src="./index_files/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript 
+    <script src="/js/jquery.easing.min.js"></script> -->
+    <script src="./index_files/jquery.easing.min.js"></script>
+
+
+
+    <!-- Custom Theme JavaScript -->
+    <script src="./index_files/grayscale.js"></script>
+
+
+    
+
+</body></html>
